@@ -12,20 +12,40 @@ import java.util.Scanner;
  * @author dario
  */
 public class EjercicioBolas {
-    
+
     public static void main(String[] args) {
-        
-        Scanner teclado = new Scanner (System.in);
-        
+
+        Scanner teclado = new Scanner(System.in);
+        String cliente;
         double importe;
+        double descuentoBola;
+        int bola;
+
+        do {
+
+            importe = UtilidadesBolas.pedirImporteProducto();
+
+            bola = UtilidadesBolas.sacarBola();
+
+            descuentoBola = UtilidadesBolas.descuentoBola(bola);
+
+            double importeDescontado = UtilidadesBolas.importeConDescuento(importe, descuentoBola);
+
+            do {
+
+                System.out.println("¿Hay otro cliente?");
+                cliente = teclado.nextLine();
+
+            } while (!cliente.equalsIgnoreCase("si") && !cliente.equalsIgnoreCase("no"));
+
+        } while (cliente.equalsIgnoreCase("si"));
         
-        try {
-            System.out.println("Introduce el importe del producto");
-            importe = teclado.nextDouble();
-        } catch (InputMismatchException ime) {
-            System.out.println("No has introducido el número correctamente");
+        if (cliente.equalsIgnoreCase("no")) {
+            
+            System.out.println("Gracias y ADIOS");
+            
         }
-        
+
     }
-    
+
 }
